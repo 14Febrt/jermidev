@@ -7,7 +7,7 @@ html { scroll-behavior: smooth; font-size: 14.4px; }
 .font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
 
 body {
-  background-color: #050505;
+  background-color: #000000;
   color: #ffffff;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -16,7 +16,7 @@ body {
 }
 
 body::-webkit-scrollbar { width: 6px; }
-body::-webkit-scrollbar-track { background: #050505; }
+body::-webkit-scrollbar-track { background: #000000; }
 body::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 body::-webkit-scrollbar-thumb:hover { background: #444; }
 

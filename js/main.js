@@ -55,8 +55,8 @@ class ParticlesSystem {
         const dx = this.particles[j].x - p.x, dy = this.particles[j].y - p.y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < 120) {
-          const op = (1 - dist/120) * 0.16;
-          this.ctx.strokeStyle = 'rgba(120,128,148,' + op + ')';
+          const op = (1 - dist/120) * 0.5;
+          this.ctx.strokeStyle = 'rgba(220,228,245,' + op + ')';
           this.ctx.lineWidth = 0.6;
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
@@ -94,7 +94,7 @@ class Particle {
     if (this.baseY < 0 || this.baseY > this.canvas.height) this.speedY *= -1;
   }
   draw(ctx) {
-    ctx.fillStyle = 'rgba(120,128,148,0.45)';
+    ctx.fillStyle = 'rgba(225,232,248,0.85)';
     ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill();
   }
 }
