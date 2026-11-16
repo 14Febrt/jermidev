@@ -748,7 +748,7 @@ footer {
 }
 .flip-back .project-title { margin-bottom: 10px; }
 .flip-back .project-desc { color: #9ca3af; }
-.flip-back .tags { margin-top: 14px; }
+.flip-back .tags { margin-top: 14px; margin-bottom: 16px; }
 
 .flip-hint {
   position: absolute;
@@ -762,7 +762,7 @@ footer {
 }
 
 .flip-repo {
-  margin-top: 14px;
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -850,7 +850,7 @@ footer {
 
 @media (max-width: 768px) {
   .projects-grid .project-card.flip-card { aspect-ratio: 7 / 5; }
-  .flip-back { justify-content: flex-start; overflow-y: auto; padding: 14px 16px 36px; }
+  .flip-back { justify-content: flex-start; overflow-y: auto; padding: 14px 16px 16px; }
   .flip-back .project-title { margin-bottom: 8px; }
   .flip-back .tags { margin-top: 10px; }
   .flip-hint { left: 18px; bottom: 10px; }
