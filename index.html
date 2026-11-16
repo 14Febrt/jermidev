@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,36 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=12">
 
 </head>
 <body>
 
 <canvas id="particles-canvas"></canvas>
 <div class="noise-overlay" aria-hidden="true"></div>
-
-<header id="main-header">
-  <div class="glass-nav">
-    <a href="#" class="nav-logo">JERMIDEV</a>
-    <nav class="nav-links">
-      <a href="#skills" class="nav-link">Навыки</a>
-      <a href="#projects" class="nav-link">Проекты</a>
-      <a href="#stack" class="nav-link">Стек</a>
-    </nav>
-    <div class="nav-right">
-      <a href="#contact" class="nav-cta">Связаться</a>
-      <button class="nav-burger" id="burger" aria-label="Меню" aria-expanded="false">
-        <span></span><span></span>
-      </button>
-    </div>
-  </div>
-  <nav class="mobile-menu" id="mobileMenu">
-    <a href="#skills" class="m-link">Навыки</a>
-    <a href="#projects" class="m-link">Проекты</a>
-    <a href="#stack" class="m-link">Стек</a>
-    <a href="#contact" class="m-cta">Связаться</a>
-  </nav>
-</header>
 
 <section id="hero">
   <div class="hero-inner">
@@ -57,7 +34,7 @@
       </h1>
 
       <p class="hero-sub fade-up">
-        Специализирован по созданию Telegram ботов, сайтов и прочих программных решений.
+        Specialized in building websites, applications, Telegram bots and other software solutions.
       </p>
 
       <div class="hero-cta fade-up">
@@ -65,7 +42,10 @@
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           Telegram
         </a>
-        <a href="#projects" class="btn-portfolio">Портфолио</a>
+        <a href="https://github.com/jermiDEV" target="_blank" rel="noopener" class="btn-github">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
       </div>
     </div>
 
@@ -76,19 +56,19 @@
             <span class="d1"></span><span class="d2"></span><span class="d3"></span>
           </div>
           <div class="code-lines" id="terminalCode">
-            <div><span class="ln">01</span><span class="c-comment"># Обработка нового заказа</span></div>
-            <div><span class="ln">02</span><span class="c-op">@</span><span class="c-fn">router.</span><span id="typeTarget"><span class="c-fn">message</span><span class="c-op">(</span><span class="c-plain">F.text</span><span class="c-op"> == </span><span class="c-str">"Купить"</span><span class="c-op">)</span></span><span class="type-caret"></span></div>
+            <div><span class="ln">01</span><span class="c-comment"># Handle a new order</span></div>
+            <div><span class="ln">02</span><span class="c-op">@</span><span class="c-fn">router.</span><span id="typeTarget"><span class="c-fn">message</span><span class="c-op">(</span><span class="c-plain">F.text</span><span class="c-op"> == </span><span class="c-str">"Buy"</span><span class="c-op">)</span></span><span class="type-caret"></span></div>
             <div><span class="ln">03</span><span class="c-kw">async def</span> <span class="c-fn">create_order</span><span class="c-op">(</span><span class="c-plain">msg</span><span class="c-op">:</span> <span class="c-plain">Message</span><span class="c-op">):</span></div>
-            <div><span class="ln">04</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-comment"># Формируем заказ для Jermi</span></div>
+            <div><span class="ln">04</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-comment"># Build the order for Jermi</span></div>
             <div><span class="ln">05</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-plain">order</span> <span class="c-op">=</span> <span class="c-kw">await</span> <span class="c-fn">db.create_order</span><span class="c-op">(</span></div>
             <div><span class="ln">06</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-plain">user_id</span><span class="c-op">=</span><span class="c-plain">msg.from_user.id</span><span class="c-op">,</span></div>
             <div><span class="ln">07</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-plain">amount</span><span class="c-op">=</span><span class="c-num">5000</span><span class="c-op">,</span></div>
             <div><span class="ln">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-plain">currency</span><span class="c-op">=</span><span class="c-str">"USD"</span></div>
             <div><span class="ln">09</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-op">)</span></div>
             <div><span class="ln">10</span></div>
-            <div><span class="ln">11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-comment"># Уведомляем пользователя</span></div>
+            <div><span class="ln">11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-comment"># Notify the user</span></div>
             <div><span class="ln">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">await</span> <span class="c-fn">msg.answer</span><span class="c-op">(</span></div>
-            <div><span class="ln">13</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">f"Заказ #{order.id} создан!"</span><span class="c-op">,</span></div>
+            <div><span class="ln">13</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">f"Order #{order.id} created!"</span><span class="c-op">,</span></div>
             <div><span class="ln">14</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-plain">reply_markup</span><span class="c-op">=</span><span class="c-plain">kb.pay_button</span></div>
             <div><span class="ln">15</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-op">)</span></div>
           </div>
@@ -104,19 +84,19 @@
 
 <section id="skills" class="section-pad">
   <div class="section-inner">
-    <h2 class="skills-title fade-up">Навыки</h2>
+    <h2 class="skills-title fade-up">Skills</h2>
     <div class="skills-grid">
       <div class="skill-card card-stagger">
         <h3>Web Design &amp; Development</h3>
-        <p>Создание сайтов с интерактивными анимациями, адаптивным дизайном и JavaScript функционалом</p>
+        <p>Building websites with interactive animations, responsive design and JavaScript functionality</p>
       </div>
       <div class="skill-card card-stagger">
         <h3>C# Development</h3>
-        <p>Разработка десктоп-приложений и сервисов на .NET: WPF, WinForms, ASP.NET и Unity</p>
+        <p>Desktop applications and services on .NET: WPF, WinForms, ASP.NET and Unity</p>
       </div>
       <div class="skill-card card-stagger">
         <h3>Python Development</h3>
-        <p>Разработка Telegram ботов на aiogram, работа с JSON, SQLite, API, системы логирования и создание автоматизированных решений</p>
+        <p>Telegram bots on aiogram, working with JSON, SQLite, APIs, logging systems and automated solutions</p>
       </div>
     </div>
   </div>
@@ -128,65 +108,101 @@
   <div class="section-inner">
     <div class="proj-header">
       <div>
-        <span class="label">Портфолио</span>
-        <h2 class="sec-title fade-up">Рабочие проекты</h2>
+        <span class="label">Portfolio</span>
+        <h2 class="sec-title fade-up">Featured Projects</h2>
       </div>
     </div>
     <div class="projects-grid">
 
-      <article class="project-card card-stagger">
-        <div class="project-preview has-video">
-          <video src="video/expense.mp4" poster="img/collage.webp" autoplay muted loop playsinline preload="metadata"></video>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Novaarchy</h3>
-          <p class="project-desc">Пиксельный лендинг с гибкими анимациями: живые переходы, эффектные детали и практичная подача.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      <article class="project-card card-stagger flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Novaarchy — click to flip">
+        <div class="flip-rotor">
+          <div class="flip-face flip-front">
+            <div class="project-preview has-video">
+              <video src="video/nova.mp4" poster="img/poster-novaarchy.webp" autoplay muted loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback"></video>
+            </div>
+            <div class="front-overlay"><span class="front-name">Novaarchy</span></div>
+            <span class="flip-glare" aria-hidden="true"></span>
+          </div>
+          <div class="flip-face flip-back">
+            <h3 class="project-title">Novaarchy</h3>
+            <p class="project-desc">Animated landing in the style of omarchy.org, rebuilt from scratch: a pixel-art wordmark that assembles out of sand, a living dust canvas and typewriter headings. Live theme switcher, command palette and bundled local fonts — pure HTML, CSS and JavaScript, no build step.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+            <a class="flip-repo" href="https://github.com/jermiDEV/novarchy" target="_blank" rel="noopener">
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <span class="flip-hint">click to flip</span>
+            <span class="flip-glare" aria-hidden="true"></span>
+          </div>
         </div>
       </article>
 
-      <article class="project-card card-stagger">
-        <div class="project-preview">
-          <div class="project-preview-inner">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 2v6M8 2h8"/><circle cx="9" cy="14" r="1.5" fill="#fff"/><circle cx="15" cy="14" r="1.5" fill="#fff"/><path d="M9 18h6"/>
-            </svg>
+      <article class="project-card card-stagger flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="PikMist — click to flip">
+        <div class="flip-rotor">
+          <div class="flip-face flip-front">
+            <div class="project-preview has-video">
+              <video src="video/pikmist.mp4" poster="img/poster-pikmist.webp" autoplay muted loop playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback"></video>
+            </div>
+            <div class="front-overlay"><span class="front-name">PikMist</span></div>
+            <span class="flip-glare" aria-hidden="true"></span>
           </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">AI Business Assistant</h3>
-          <p class="project-desc">Умный бот техподдержки на базе OpenAI. Обучается на базе знаний компании, отвечает на вопросы 24/7.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Aiogram</span><span class="tag">OpenAI API</span></div>
+          <div class="flip-face flip-back">
+            <h3 class="project-title">PikMist</h3>
+            <p class="project-desc">OSINT tool that finds which of 695+ sites a username or email is registered on. Builds a "digital passport": full name, birth year, phone numbers and avatar. Built-in free AI profile analysis, a polished web interface and PDF, CSV &amp; JSON exports.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">AI</span><span class="tag">OSINT</span></div>
+            <a class="flip-repo" href="https://github.com/jermiDEV/pikmist" target="_blank" rel="noopener">
+              <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <span class="flip-hint">click to flip</span>
+            <span class="flip-glare" aria-hidden="true"></span>
+          </div>
         </div>
       </article>
 
-      <article class="project-card card-stagger">
-        <div class="project-preview">
-          <div class="project-preview-inner">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
+      <article class="project-card card-stagger flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Anonymous Chat — click to flip">
+        <div class="flip-rotor">
+          <div class="flip-face flip-front">
+            <div class="project-preview">
+              <div class="project-preview-inner">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="front-overlay"><span class="front-name">Anonymous Chat</span></div>
+            <span class="flip-glare" aria-hidden="true"></span>
           </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Anonymous Chat</h3>
-          <p class="project-desc">Бот для анонимного общения. Случайный подбор собеседников, фильтры и модерация контента.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Aiogram</span><span class="tag">SQLite3</span></div>
+          <div class="flip-face flip-back">
+            <h3 class="project-title">Anonymous Chat</h3>
+            <p class="project-desc">Bot for anonymous chatting. Random matchmaking, filters and content moderation.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Aiogram</span><span class="tag">SQLite3</span></div>
+            <span class="flip-hint">click to flip</span>
+            <span class="flip-glare" aria-hidden="true"></span>
+          </div>
         </div>
       </article>
 
-      <article class="project-card card-stagger">
-        <div class="project-preview">
-          <div class="project-preview-inner">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
+      <article class="project-card card-stagger flip-card" role="button" tabindex="0" aria-pressed="false" aria-label="Video Download Bot — click to flip">
+        <div class="flip-rotor">
+          <div class="flip-face flip-front">
+            <div class="project-preview">
+              <div class="project-preview-inner">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </div>
+            </div>
+            <div class="front-overlay"><span class="front-name">Video Download Bot</span></div>
+            <span class="flip-glare" aria-hidden="true"></span>
           </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Video Download Bot</h3>
-          <p class="project-desc">Бот для скачивания видео с YouTube и других платформ. Выбор качества, конвертация в аудио.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Aiogram</span><span class="tag">yt-dlp</span></div>
+          <div class="flip-face flip-back">
+            <h3 class="project-title">Video Download Bot</h3>
+            <p class="project-desc">Bot for downloading videos from YouTube and other platforms. Quality selection and audio conversion.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Aiogram</span><span class="tag">yt-dlp</span></div>
+            <span class="flip-hint">click to flip</span>
+            <span class="flip-glare" aria-hidden="true"></span>
+          </div>
         </div>
       </article>
 
@@ -198,17 +214,17 @@
 
 <section id="stack" class="section-pad">
   <div class="section-inner">
-    <h2 class="sec-title fade-up">Технологический стек</h2>
-    <p class="sec-sub fade-up">Инструменты, которые позволяют создавать быстрые и безопасные решения.</p>
+    <h2 class="sec-title fade-up">Tech Stack</h2>
+    <p class="sec-sub fade-up">Tools that let me build fast and secure solutions.</p>
     <div class="stack-grid">
       <div class="stack-item card-stagger"><div class="name">C#</div><div class="role">.NET, Unity, ASP.NET</div></div>
       <div class="stack-item card-stagger"><div class="name">Telegram API</div><div class="role">aiogram, pyTelegramBotAPI</div></div>
-      <div class="stack-item card-stagger"><div class="name">Базы данных</div><div class="role">SQLite, PostgreSQL</div></div>
-      <div class="stack-item card-stagger"><div class="name">HTML/CSS</div><div class="role">Верстка интерфейсов</div></div>
-      <div class="stack-item card-stagger"><div class="name">JavaScript</div><div class="role">Клиентская логика</div></div>
-      <div class="stack-item card-stagger"><div class="name">Figma</div><div class="role">Дизайн прототипов</div></div>
-      <div class="stack-item card-stagger"><div class="name">Git</div><div class="role">Контроль версий</div></div>
-      <div class="stack-item card-stagger"><div class="name">API интеграции</div><div class="role">REST API, WebHooks</div></div>
+      <div class="stack-item card-stagger"><div class="name">Databases</div><div class="role">SQLite, PostgreSQL</div></div>
+      <div class="stack-item card-stagger"><div class="name">HTML/CSS</div><div class="role">Interface markup</div></div>
+      <div class="stack-item card-stagger"><div class="name">JavaScript</div><div class="role">Client-side logic</div></div>
+      <div class="stack-item card-stagger"><div class="name">Figma</div><div class="role">Prototype design</div></div>
+      <div class="stack-item card-stagger"><div class="name">Git</div><div class="role">Version control</div></div>
+      <div class="stack-item card-stagger"><div class="name">API integrations</div><div class="role">REST API, WebHooks</div></div>
     </div>
   </div>
 </section>
@@ -217,11 +233,11 @@
   <div class="footer-inner">
     <div class="contact-grid fade-up">
       <div>
-        <h2 class="contact-title">Есть идея для проекта?</h2>
-        <p class="contact-sub">Давайте обсудим вашу задачу. Я проанализирую требования и предложу оптимальное техническое решение.</p>
+        <h2 class="contact-title">Got a project idea?</h2>
+        <p class="contact-sub">Let's discuss your task. I'll analyze the requirements and suggest the optimal technical solution.</p>
         <div class="contact-btns">
-          <a href="https://t.me/jermidev" target="_blank" rel="noopener" class="btn-contact-primary">Написать в Telegram</a>
-          <a href="https://kwork.ru/user/jermi" target="_blank" rel="noopener" class="btn-contact-ghost">Kwork</a>
+          <a href="https://t.me/jermidev" target="_blank" rel="noopener" class="btn-contact-primary">Message on Telegram</a>
+          <a href="https://github.com/jermiDEV" target="_blank" rel="noopener" class="btn-contact-ghost">GitHub</a>
         </div>
       </div>
       <div></div>
@@ -237,6 +253,6 @@
   </div>
 </footer>
 
-<script src="js/main.js" defer></script>
+<script src="js/main.js?v=7" defer></script>
 </body>
 </html>

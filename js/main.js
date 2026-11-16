@@ -101,17 +101,6 @@ class Particle {
 
 window.addEventListener('load', () => { new ParticlesSystem(); });
 
-const header = document.getElementById('main-header');
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const cur = window.scrollY;
-  if (cur > 20) header.classList.add('scrolled');
-  else header.classList.remove('scrolled');
-  if (cur > lastScroll && cur > 100) header.classList.add('header-hidden');
-  else header.classList.remove('header-hidden');
-  lastScroll = cur <= 0 ? 0 : cur;
-}, { passive: true });
-
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
@@ -157,7 +146,7 @@ if (typeTarget && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ['"', 'c-str'],
     [')', 'c-op']
   ];
-  const typeWords = ['Купить', 'Продать', 'Заказать', 'Предложить'];
+  const typeWords = ['Buy', 'Sell', 'Order', 'Offer'];
   let typeBase = 0;
   for (const t of typeTokens) {
     if (t[0] === 'WORD') break;
@@ -219,22 +208,202 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-const burger = document.getElementById('burger');
-const mobileMenu = document.getElementById('mobileMenu');
-if (burger && mobileMenu) {
-  burger.addEventListener('click', () => {
-    const open = mobileMenu.classList.toggle('open');
-    burger.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      burger.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    });
-  });
-}
-
 const y = document.getElementById('year');
 if (y) y.textContent = new Date().getFullYear();
+
+(() => {
+  const rootEls = Array.from(document.querySelectorAll('.project-card.flip-card'));
+  if (!rootEls.length) return;
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PERSPECTIVE = 1100;
+  const TILT_MAX = 12;
+  const HOVER_SCALE = 1.03;
+  const SPR = { flip: [170, 20], tilt: [240, 24], lift: [320, 26] };
+
+  const active = new Set();
+  let raf = 0;
+  let last = 0;
+
+  function spring(p, v, t, kd, dt) {
+    v += (kd[0] * (t - p) - kd[1] * v) * dt;
+    return [p + v * dt, v];
+  }
+
+  function wake(c) {
+    active.add(c);
+    if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
+  }
+
+  function loop(now) {
+    const dt = Math.min(0.032, Math.max(0.001, (now - last) / 1000));
+    last = now;
+    for (const c of Array.from(active)) c.step(dt);
+    raf = 0;
+    if (active.size) raf = requestAnimationFrame(loop);
+  }
+
+  function paint(c) {
+    c.rotor.style.transform =
+      'perspective(' + PERSPECTIVE + 'px) scale(' + c.lift.toFixed(4) + ')' +
+      ' rotateX(' + c.tx.toFixed(3) + 'deg) rotateY(' + (c.turn + c.ty).toFixed(3) + 'deg)';
+  }
+
+  function create(root) {
+    const c = {
+      root,
+      rotor: root.querySelector('.flip-rotor'),
+      turn: 0, turnV: 0, turnT: 0,
+      tx: 0, txv: 0, txt: 0,
+      ty: 0, tyv: 0, tyt: 0,
+      lift: 1, liftv: 0, liftt: 1,
+      drag: null,
+      step(dt) {
+        [this.turn, this.turnV] = spring(this.turn, this.turnV, this.turnT, SPR.flip, dt);
+        [this.tx, this.txv] = spring(this.tx, this.txv, this.txt, SPR.tilt, dt);
+        [this.ty, this.tyv] = spring(this.ty, this.tyv, this.tyt, SPR.tilt, dt);
+        [this.lift, this.liftv] = spring(this.lift, this.liftv, this.liftt, SPR.lift, dt);
+        const settled =
+          Math.abs(this.turnT - this.turn) < 0.05 && Math.abs(this.turnV) < 8 &&
+          Math.abs(this.txt - this.tx) < 0.01 && Math.abs(this.txv) < 1 &&
+          Math.abs(this.tyt - this.ty) < 0.01 && Math.abs(this.tyv) < 1 &&
+          Math.abs(this.liftt - this.lift) < 0.0005;
+        if (settled) {
+          this.turn = this.turnT; this.turnV = 0;
+          this.tx = this.txt; this.txv = 0;
+          this.ty = this.tyt; this.tyv = 0;
+          this.lift = this.liftt; this.liftv = 0;
+          active.delete(this);
+        }
+        paint(this);
+      },
+      rest() {
+        this.txt = 0; this.tyt = 0; this.liftt = 1;
+        this.root.classList.remove('is-hover');
+        wake(this);
+      },
+      flip(instant) {
+        if (reduced) {
+          this.root.classList.toggle('flipped');
+          this.root.setAttribute('aria-pressed', this.root.classList.contains('flipped') ? 'true' : 'false');
+          return;
+        }
+        const base = Math.round(this.turn / 180) * 180;
+        this.turnT = base + 180;
+        this.root.setAttribute('aria-pressed', String(Math.round(this.turnT / 180) % 2 === 1));
+        if (instant) { this.turn = this.turnT; this.turnV = 0; paint(this); }
+        else wake(this);
+      },
+      settle(target, velocity) {
+        this.turnT = target;
+        this.turnV = velocity || 0;
+        wake(this);
+      }
+    };
+    return c;
+  }
+
+  function bind(c) {
+    const root = c.root;
+
+    root.addEventListener('pointerenter', e => {
+      if (reduced || e.pointerType === 'touch' || c.drag) return;
+      c.liftt = HOVER_SCALE;
+      root.classList.add('is-hover');
+      wake(c);
+    });
+
+    root.addEventListener('pointermove', e => {
+      if (c.drag && c.drag.id === e.pointerId) {
+        const d = e.clientX - c.drag.x;
+        if (!c.drag.moved) {
+          const slop = e.pointerType === 'touch' ? 8 : 4;
+          if (Math.abs(d) < slop) return;
+          c.drag.moved = true;
+          root.classList.add('is-dragging');
+          c.txt = 0; c.tyt = 0;
+        }
+        c.turn = c.drag.base + (d / root.offsetWidth) * 180;
+        c.turnV = 0;
+        const now = performance.now();
+        c.drag.hist.push([now, c.turn]);
+        while (c.drag.hist.length > 2 && now - c.drag.hist[0][0] > 90) c.drag.hist.shift();
+        paint(c);
+        wake(c);
+        return;
+      }
+      if (reduced || e.pointerType === 'touch') return;
+      const r = root.getBoundingClientRect();
+      const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+      const py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+      c.txt = (0.5 - py) * 2 * TILT_MAX;
+      c.tyt = (px - 0.5) * 2 * TILT_MAX;
+      root.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
+      root.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+      wake(c);
+    });
+
+    const release = (e, cancelled) => {
+      const g = c.drag;
+      if (!g || g.id !== e.pointerId) return;
+      c.drag = null;
+      root.classList.remove('is-dragging');
+      if (!root.matches(':hover')) c.rest();
+      if (!g.moved) {
+        if (!cancelled && !e.target.closest('a')) c.flip(false);
+        else c.settle(Math.round(c.turn / 180) * 180, 0);
+        return;
+      }
+      const here = c.turn;
+      let v = 0;
+      const a = g.hist[0], b = g.hist[g.hist.length - 1];
+      if (!cancelled && a && b && b[0] > a[0] && performance.now() - b[0] < 60) {
+        v = ((b[1] - a[1]) / (b[0] - a[0])) * 1000;
+      }
+      const snapBase = Math.round(here / 180) * 180;
+      const to = Math.min(snapBase + 180, Math.max(snapBase - 180, Math.round((here + v * 0.16) / 180) * 180));
+      c.settle(to, v);
+    };
+
+    root.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      if (Math.abs(c.turn - c.turnT) < 6 && Math.abs(c.turnV) < 40) {
+        c.turn = c.turnT; c.turnV = 0;
+        paint(c);
+      }
+      if (e.target.closest('a')) return;
+      try { root.setPointerCapture(e.pointerId); } catch {}
+      c.turnV = 0;
+      c.turnT = c.turn;
+      c.drag = { id: e.pointerId, x: e.clientX, base: c.turn, moved: false, hist: [] };
+      if (!reduced) { c.liftt = HOVER_SCALE; wake(c); }
+    });
+
+    root.addEventListener('pointerup', e => release(e, false));
+    root.addEventListener('pointercancel', e => release(e, true));
+    root.addEventListener('pointerleave', () => { if (!c.drag) c.rest(); });
+
+    root.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      if (!e.repeat) c.flip(reduced);
+    });
+    root.addEventListener('click', e => {
+      if (e.detail === 0) { c.flip(reduced); return; }
+      if (e.target.closest && e.target.closest('a')) return;
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      const link = under && under.closest('a');
+      if (link && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(link.href, '_blank', 'noopener');
+      }
+    });
+  }
+
+  rootEls.forEach(root => {
+    const c = create(root);
+    bind(c);
+    paint(c);
+  });
+})();
